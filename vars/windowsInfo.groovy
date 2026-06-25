@@ -1,9 +1,17 @@
 def call() {
-    echo "Retrieving Windows environment information..."
-    bat 'echo --- OS Version Info ---'
-    bat 'ver'
-    bat 'echo --- System Info ---'
-    bat 'systeminfo | findstr /B /C:"OS Name" /C:"OS Version"'
-    bat 'echo --- Current User ---'
-    bat 'echo %USERNAME%'
+    echo "Running on node: ${env.NODE_NAME}"
+    echo "Workspace: ${env.WORKSPACE}"
+    echo "Job: ${env.JOB_NAME}"
+    echo "Build number: ${env.BUILD_NUMBER}"
+
+    bat '''
+    echo Current directory:
+    cd
+
+    echo Windows version:
+    ver
+
+    echo Workspace files:
+    dir
+    '''
 }
